@@ -33,7 +33,8 @@ public class EventService {
     }
 
     @Transactional
-    public void delete(Event event) {
+    public void delete(Long id) {
+        Event event = utils.findEventOrThrowNotFound(id, eventRepository);
         this.eventRepository.delete(event);
     }
 }
