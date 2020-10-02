@@ -14,12 +14,12 @@ public class Event {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     @NotNull(message = "Name can't be empty.")
     private EventEnum name;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "severity", nullable = false)
     @NotNull(message = "Need to set severity for this event.")
     private SeverityEnum severityEnum;
 
