@@ -2,11 +2,11 @@ package com.alert.collab.controller;
 
 import com.alert.collab.model.Event;
 import com.alert.collab.service.EventService;
-import com.alert.collab.util.EventUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,6 +22,11 @@ public class EventController {
     @GetMapping
     public ResponseEntity<List<Event>> findAll() {
         return ResponseEntity.ok(this.eventService.findAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<Event> save(@RequestBody @Valid Event event) {
+        return ResponseEntity.ok(this.eventService.save(event));
     }
 
     @DeleteMapping(path = "/{id}")
