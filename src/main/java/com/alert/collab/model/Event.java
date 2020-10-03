@@ -4,7 +4,6 @@ import com.alert.collab.enums.EventEnum;
 import com.alert.collab.enums.SeverityEnum;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Event {
@@ -14,21 +13,19 @@ public class Event {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "name", nullable = false)
-    @NotNull(message = "Name can't be empty.")
+    @Column(nullable = false)
     private EventEnum name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "severity", nullable = false)
-    @NotNull(message = "Need to set severity for this event.")
-    private SeverityEnum severityEnum;
+    @Column(nullable = false)
+    private SeverityEnum severity;
 
     private String description;
 
-    @NotNull(message = "Need to set latitude for this event.")
+    @Column(nullable = false)
     private Double latitude;
 
-    @NotNull(message = "Need to set longitude for this event.")
+    @Column(nullable = false)
     private Double longitude;
 
     public Long getId() {
@@ -48,11 +45,11 @@ public class Event {
     }
 
     public SeverityEnum getSeverityEnum() {
-        return severityEnum;
+        return severity;
     }
 
     public void setSeverityEnum(SeverityEnum severityEnum) {
-        this.severityEnum = severityEnum;
+        this.severity = severityEnum;
     }
 
     public String getDescription() {
@@ -61,5 +58,29 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public SeverityEnum getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(SeverityEnum severity) {
+        this.severity = severity;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
