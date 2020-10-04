@@ -1,5 +1,6 @@
 package com.alert.collab.controller;
 
+import com.alert.collab.dto.EventDTO;
 import com.alert.collab.model.Event;
 import com.alert.collab.service.EventService;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,8 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<Event> save(@RequestBody @Valid Event event) {
+    public ResponseEntity<Event> save(@RequestBody @Valid EventDTO eventDto) {
+        Event event = eventDto.converter(eventDto);
         return ResponseEntity.ok(this.eventService.save(event));
     }
 
