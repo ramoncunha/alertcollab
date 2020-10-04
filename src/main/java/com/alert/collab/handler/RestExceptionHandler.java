@@ -62,4 +62,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .fieldMessage(fieldsMessages)
                 .build(), HttpStatus.BAD_REQUEST);
     }
+
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+            .timestamp(LocalDateTime.now())
+            .status(status.value())
+            .title(ex.getCause().getMessage())
+            .detail(ex.getMessage())
+            .developerMessage(ex.getClass().getName())
+            .build();
+        return new ResponseEntity<>(exceptionDetails, headers, status);
+    }
 }
