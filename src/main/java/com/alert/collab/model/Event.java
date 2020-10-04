@@ -44,11 +44,11 @@ public class Event {
         this.name = name;
     }
 
-    public SeverityEnum getSeverityEnum() {
+    public SeverityEnum getSeverity() {
         return severity;
     }
 
-    public void setSeverityEnum(SeverityEnum severityEnum) {
+    public void setSeverity(SeverityEnum severityEnum) {
         this.severity = severityEnum;
     }
 
@@ -58,14 +58,6 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public SeverityEnum getSeverity() {
-        return severity;
-    }
-
-    public void setSeverity(SeverityEnum severity) {
-        this.severity = severity;
     }
 
     public Double getLatitude() {
