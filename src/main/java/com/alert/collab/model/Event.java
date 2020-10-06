@@ -4,6 +4,7 @@ import com.alert.collab.enums.EventEnum;
 import com.alert.collab.enums.SeverityEnum;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Event {
@@ -27,6 +28,15 @@ public class Event {
 
     @Column(nullable = false)
     private Double longitude;
+
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
+
+    @PrePersist
+    public void prePersist() {
+        final Date now = new Date();
+        this.createdAt = now;
+    }
 
     public Long getId() {
         return id;
@@ -74,5 +84,13 @@ public class Event {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
