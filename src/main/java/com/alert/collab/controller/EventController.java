@@ -3,6 +3,7 @@ package com.alert.collab.controller;
 import com.alert.collab.dto.EventDTO;
 import com.alert.collab.model.Event;
 import com.alert.collab.service.EventService;
+import com.alert.collab.util.EventConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +22,20 @@ public class EventController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Event>> findAll() {
-        return ResponseEntity.ok(this.eventService.findAll());
+    public ResponseEntity<List<EventDTO>> findAll() {
+        List<Event> events = this.eventService.findAll();
+        List<EventDTO> response = EventConverter.eventListToEventDtoList(events);
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public ResponseEntity<Event> save(@RequestBody @Valid EventDTO eventDto) {
-        Event event = eventDto.converter(eventDto);
-        return ResponseEntity.ok(this.eventService.save(event));
+    public ResponseEntity<EventDTO> save(@RequestBody @Valid EventDTO eventDto) {
+        Event event = EventConverter.converterForRequest(eventDto);
+        Event savedEvent = this.eventService.save(event);
+        EventDTO response = EventConverter.converterForResponse(savedEvent);
+
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping(path = "/{id}")

@@ -24,17 +24,6 @@ public class EventDTO {
     @NotNull(message = "Need to set longitude for this event.")
     private String longitude;
 
-    public Event converter(EventDTO eventDto) {
-        Event event = new Event();
-        event.setId(eventDto.getId());
-        event.setName(EventEnum.valueOf(eventDto.getName()));
-        event.setSeverity(SeverityEnum.valueOf(eventDto.getSeverity()));
-        event.setDescription(eventDto.getDescription());
-        event.setLatitude(Double.valueOf(eventDto.getLatitude()));
-        event.setLongitude(Double.valueOf(eventDto.getLongitude()));
-        return event;
-    }
-
     public Long getId() {
         return id;
     }
