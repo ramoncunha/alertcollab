@@ -29,6 +29,9 @@ public class Event {
     @Column(nullable = false)
     private Double longitude;
 
+    @Column(name = "event_date", nullable = false)
+    private Date eventDate;
+
     @Column(name = "created_at", nullable = false)
     private Date createdAt;
 
@@ -86,11 +89,11 @@ public class Event {
         this.longitude = longitude;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getEventDate() {
+        return eventDate;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
     }
 }

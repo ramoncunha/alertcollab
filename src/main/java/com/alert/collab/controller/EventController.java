@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<EventDTO> save(@RequestBody @Valid EventDTO eventDto) {
+    public ResponseEntity<EventDTO> save(@RequestBody @Valid EventDTO eventDto) throws ParseException {
         Event event = EventConverter.converterForRequest(eventDto);
         Event savedEvent = this.eventService.save(event);
         EventDTO response = EventConverter.converterForResponse(savedEvent);

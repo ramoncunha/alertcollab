@@ -1,9 +1,5 @@
 package com.alert.collab.dto;
 
-import com.alert.collab.enums.EventEnum;
-import com.alert.collab.enums.SeverityEnum;
-import com.alert.collab.model.Event;
-
 import javax.validation.constraints.NotNull;
 
 public class EventDTO {
@@ -23,6 +19,9 @@ public class EventDTO {
 
     @NotNull(message = "Need to set longitude for this event.")
     private String longitude;
+
+    @NotNull(message = "Fill event date.")
+    private String eventDate;
 
     public Long getId() {
         return id;
@@ -70,5 +69,13 @@ public class EventDTO {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 }

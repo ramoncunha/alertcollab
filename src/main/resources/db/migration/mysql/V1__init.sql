@@ -5,6 +5,7 @@ CREATE TABLE `event` (
     `description` varchar(255) DEFAULT NULL,
     `latitude` DECIMAL(8,6) NOT NULL,
     `longitude` DECIMAL(9,6) NOT NULL,
+    `event_date` datetime NOT NULL,
     `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHAR SET=utf8;
 
