@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,5 +74,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             .developerMessage(ex.getClass().getName())
             .build();
         return new ResponseEntity<>(exceptionDetails, headers, status);
+    }
+
+    @ExceptionHandler(ParseException.class)
+    public ResponseEntity<Object> handleParseException(ParseException ex) {
+        return new ResponseEntity<>(
+                ExceptionDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .title("Date parse exception")
+                .detail(ex.getMessage())
+                .developerMessage("Use yyyy-MM-dd HH:mm")
+                .build(), HttpStatus.BAD_REQUEST);
     }
 }
