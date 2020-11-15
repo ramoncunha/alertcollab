@@ -6,7 +6,7 @@ public class EventDTO {
 
     private Long id;
 
-    @NotNull(message = "event.name.empty")
+    @NotNull(message = "{event.name.empty}")
     private String name;
 
     @NotNull(message = "Need to set severity for this event.")
