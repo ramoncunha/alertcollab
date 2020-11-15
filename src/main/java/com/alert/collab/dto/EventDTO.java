@@ -6,21 +6,21 @@ public class EventDTO {
 
     private Long id;
 
-    @NotNull(message = "{event.name.empty}")
+    @NotNull(message = "{event.name.error}")
     private String name;
 
-    @NotNull(message = "Need to set severity for this event.")
+    @NotNull(message = "{event.severiy.error}")
     private String severity;
 
     private String description;
 
-    @NotNull(message = "Need to set latitude for this event.")
+    @NotNull(message = "{event.latitude.error}")
     private String latitude;
 
-    @NotNull(message = "Need to set longitude for this event.")
+    @NotNull(message = "{event.longitude.error}")
     private String longitude;
 
-    @NotNull(message = "Fill event date.")
+    @NotNull(message = "{event.date.error}")
     private String eventDate;
 
     public Long getId() {
