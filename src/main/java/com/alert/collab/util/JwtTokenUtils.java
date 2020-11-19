@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.HashMap;
 
 @Component
 public class JwtTokenUtils {
@@ -16,7 +15,7 @@ public class JwtTokenUtils {
     public static final String CLAIM_KEY_CREATED = "created";
     @Value("${jwt.secret}")
     private String secret;
-    @Value("{jwt.expiration}")
+    @Value("${jwt.expiration}")
     private Long expiration;
 
     public String getUsernameFromToken(String token) {
