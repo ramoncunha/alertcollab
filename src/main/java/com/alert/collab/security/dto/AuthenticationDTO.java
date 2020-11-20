@@ -7,7 +7,7 @@ public class AuthenticationDTO {
     @NotEmpty
     private String username;
     @NotEmpty
-    private String senha;
+    private String password;
 
     public AuthenticationDTO() {
     }
@@ -20,11 +20,11 @@ public class AuthenticationDTO {
         this.username = username;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

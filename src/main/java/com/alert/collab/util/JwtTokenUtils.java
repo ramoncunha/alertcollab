@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.impl.DefaultClaims;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -59,5 +60,9 @@ public class JwtTokenUtils {
             expiration = new Date();
         }
         return expiration;
+    }
+
+    public String getToken(UserDetails userDetails) {
+
     }
 }
