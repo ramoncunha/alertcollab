@@ -14,8 +14,9 @@ ALTER TABLE `event` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE `user` (
     `id` bigint(20) NOT NULL,
-    `name` varchar(50) NOT NULL,
+    `username` varchar(50) NOT NULL,
     `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `user` ADD PRIMARY KEY (`id`);
+ALTER TABLE `user` ADD PRIMARY KEY (`id`) ;
+ALTER TABLE `user` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
