@@ -41,6 +41,8 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationDTO.getUsername());
-        String token  = this.jwtTokenUtils.
+        String token  = this.jwtTokenUtils.getToken(userDetails);
+
+        return ResponseEntity.ok(new TokenDTO(token));
     }
 }
