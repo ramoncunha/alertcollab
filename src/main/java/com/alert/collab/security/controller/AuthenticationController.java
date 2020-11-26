@@ -3,6 +3,7 @@ package com.alert.collab.security.controller;
 import com.alert.collab.security.dto.AuthenticationDTO;
 import com.alert.collab.security.dto.TokenDTO;
 import com.alert.collab.util.JwtTokenUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,17 +19,12 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthenticationController {
-    private AuthenticationManager authenticationManager;
-    private JwtTokenUtils jwtTokenUtils;
-    private UserDetailsService userDetailsService;
-
-    public AuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtils jwtTokenUtils, UserDetailsService userDetailsService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenUtils = jwtTokenUtils;
-        this.userDetailsService = userDetailsService;
-    }
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtils jwtTokenUtils;
+    private final UserDetailsService userDetailsService;
 
     @PostMapping
     public ResponseEntity<TokenDTO> generateTokenJwt(@Valid @RequestBody AuthenticationDTO authenticationDTO) {
