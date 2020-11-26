@@ -20,8 +20,6 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 @CrossOrigin(origins = "*")
 public class AuthenticationController {
-    private String TOKEN_HEADER = "Authorization";
-    private String BEARER_PREFIX = "Bearer ";
     private AuthenticationManager authenticationManager;
     private JwtTokenUtils jwtTokenUtils;
     private UserDetailsService userDetailsService;
