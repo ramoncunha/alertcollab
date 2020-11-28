@@ -4,6 +4,7 @@ import com.alert.collab.dto.EventDTO;
 import com.alert.collab.enums.EventEnum;
 import com.alert.collab.enums.SeverityEnum;
 import com.alert.collab.model.Event;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,9 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class EventConverter {
+@Component
+public class EventConverter {
 
-    public static Event converterForRequest(EventDTO eventDto) throws ParseException {
+    public Event converterForRequest(EventDTO eventDto) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         Event event = new Event();
@@ -27,7 +29,7 @@ public abstract class EventConverter {
         return event;
     }
 
-    public static EventDTO converterForResponse(Event event) {
+    public EventDTO converterForResponse(Event event) {
         EventDTO eventDto = new EventDTO();
         eventDto.setId(event.getId());
         eventDto.setName(event.getName().name());
@@ -39,8 +41,8 @@ public abstract class EventConverter {
         return eventDto;
     }
 
-    public static List<EventDTO> eventListToEventDtoList(List<Event> events) {
-        return events.stream().map(EventConverter::converterForResponse).collect(Collectors.toList());
+    public List<EventDTO> eventListToEventDtoList(List<Event> events) {
+        return events.stream().map(this::converterForResponse).collect(Collectors.toList());
     }
 
 }
