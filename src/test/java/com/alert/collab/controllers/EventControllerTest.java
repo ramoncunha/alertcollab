@@ -12,11 +12,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,8 +44,38 @@ public class EventControllerTest {
 
         List<EventDTO> actual = unit.findAll().getBody();
 
-        assertEquals(actual, expected,
+        assertEquals(expected, actual,
                 "Must return list of Event");
+    }
+
+    @Test
+    void save_ReturnEvent_WhenSuccessful() throws ParseException {
+        var eventDTO = EventDTO.builder()
+                .id(1L)
+                .name("FLOODING")
+                .severity("LOW")
+                .latitude("-21.747374")
+                .longitude("-43.3650897")
+                .eventDate("2020-11-01 10:20")
+                .build();
+        var savedEvent = new Event();
+        var expected = EventDTO.builder()
+                .id(1L)
+                .name("FLOODING")
+                .severity("LOW")
+                .latitude("-21.747374")
+                .longitude("-43.3650897")
+                .eventDate("2020-11-01 10:20")
+                .build();
+
+        when(converter.converterForRequest(any(EventDTO.class))).thenReturn(savedEvent);
+        when(service.save(any(Event.class))).thenReturn(savedEvent);
+        when(converter.converterForResponse(any(Event.class))).thenReturn(eventDTO);
+
+        EventDTO actual = unit.save(eventDTO).getBody();
+
+        assertEquals(expected, actual,
+                "Must return the saved Event");
     }
 
 }

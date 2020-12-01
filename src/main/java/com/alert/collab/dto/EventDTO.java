@@ -1,7 +1,12 @@
 package com.alert.collab.dto;
 
+import lombok.Builder;
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
 public class EventDTO {
 
     private Long id;

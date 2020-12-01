@@ -30,14 +30,15 @@ public class EventConverter {
     }
 
     public EventDTO converterForResponse(Event event) {
-        EventDTO eventDto = new EventDTO();
-        eventDto.setId(event.getId());
-        eventDto.setName(event.getName().name());
-        eventDto.setSeverity(event.getSeverity().name());
-        eventDto.setDescription(event.getDescription());
-        eventDto.setLatitude(event.getLatitude().toString());
-        eventDto.setLongitude(event.getLongitude().toString());
-        eventDto.setEventDate(event.getEventDate().toString());
+        EventDTO eventDto = EventDTO.builder()
+                .id(event.getId())
+                .name(event.getName().name())
+                .severity(event.getSeverity().name())
+                .description(event.getDescription())
+                .latitude(event.getLatitude().toString())
+                .longitude(event.getLongitude().toString())
+                .eventDate(event.getEventDate().toString())
+                .build();
         return eventDto;
     }
 
