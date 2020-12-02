@@ -9,8 +9,7 @@ CREATE TABLE event (
     created_at timestamp NOT NULL
 );
 
-ALTER TABLE event ADD PRIMARY KEY(id);
-ALTER TABLE event MODIFY id bigint NOT NULL AUTO_INCREMENT;
+ALTER TABLE event ADD COLUMN id SERIAL PRIMARY KEY;
 
 CREATE TABLE user (
     id bigint NOT NULL,
@@ -18,5 +17,4 @@ CREATE TABLE user (
     password varchar(255) NOT NULL
 );
 
-ALTER TABLE user ADD PRIMARY KEY (id) ;
-ALTER TABLE user MODIFY id bigint NOT NULL AUTO_INCREMENT;
+ALTER TABLE user ADD COLUMN id SERIAL PRIMARY KEY;
