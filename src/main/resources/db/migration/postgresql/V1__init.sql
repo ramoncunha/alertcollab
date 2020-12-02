@@ -10,9 +10,9 @@ CREATE TABLE event (
 
 ALTER TABLE event ADD COLUMN id SERIAL PRIMARY KEY;
 
-CREATE TABLE user (
+CREATE TABLE collaber (
     username varchar(50) NOT NULL,
     password varchar(255) NOT NULL
 );
 
-ALTER TABLE user ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE collaber ADD COLUMN id SERIAL PRIMARY KEY;
