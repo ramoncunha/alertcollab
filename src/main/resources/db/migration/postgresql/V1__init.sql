@@ -1,5 +1,4 @@
 CREATE TABLE event (
-    id bigint NOT NULL,
     name varchar(255) NOT NULL,
     severity varchar(200) NOT NULL,
     description varchar(255) DEFAULT NULL,
@@ -12,7 +11,6 @@ CREATE TABLE event (
 ALTER TABLE event ADD COLUMN id SERIAL PRIMARY KEY;
 
 CREATE TABLE user (
-    id bigint NOT NULL,
     username varchar(50) NOT NULL,
     password varchar(255) NOT NULL
 );
