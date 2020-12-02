@@ -5,8 +5,8 @@ CREATE TABLE event (
     description varchar(255) DEFAULT NULL,
     latitude NUMERIC(8,6) NOT NULL,
     longitude NUMERIC(9,6) NOT NULL,
-    event_date datetime NOT NULL,
-    created_at datetime NOT NULL
+    event_date timestamp NOT NULL,
+    created_at timestamp NOT NULL
 );
 
 ALTER TABLE event ADD PRIMARY KEY(id);
