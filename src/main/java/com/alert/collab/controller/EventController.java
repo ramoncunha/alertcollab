@@ -15,9 +15,9 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/event")
+@RequiredArgsConstructor
 public class EventController {
 
     private final EventService eventService;
