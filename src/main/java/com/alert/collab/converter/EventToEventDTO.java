@@ -1,4 +1,4 @@
-package converter;
+package com.alert.collab.converter;
 
 import com.alert.collab.dto.EventDTO;
 import com.alert.collab.model.Event;

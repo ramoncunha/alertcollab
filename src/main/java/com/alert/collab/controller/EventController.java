@@ -3,15 +3,14 @@ package com.alert.collab.controller;
 import com.alert.collab.dto.EventDTO;
 import com.alert.collab.model.Event;
 import com.alert.collab.service.EventService;
-import converter.EventDTOToEvent;
-import converter.EventToEventDTO;
+import com.alert.collab.converter.EventDTOToEvent;
+import com.alert.collab.converter.EventToEventDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +32,7 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<EventDTO> save(@RequestBody @Valid EventDTO eventDto) throws ParseException {
+    public ResponseEntity<EventDTO> save(@RequestBody @Valid EventDTO eventDto) {
         Event event = converterToEvent.convert(eventDto);
         Event savedEvent = this.eventService.save(event);
         EventDTO response = converterToEventDTO.convert(savedEvent);

@@ -5,8 +5,8 @@ import com.alert.collab.controller.EventController;
 import com.alert.collab.dto.EventDTO;
 import com.alert.collab.model.Event;
 import com.alert.collab.service.EventService;
-import converter.EventDTOToEvent;
-import converter.EventToEventDTO;
+import com.alert.collab.converter.EventDTOToEvent;
+import com.alert.collab.converter.EventToEventDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,7 +43,7 @@ public class EventControllerTest {
         var events = Collections.singletonList(new Event());
         var expected = new ArrayList<EventDTO>();
         when(service.findAll()).thenReturn(events);
-//        when(converter.eventListToEventDtoList(events)).thenReturn(expected);
+//        when(com.alert.collab.converter.eventListToEventDtoList(events)).thenReturn(expected);
 
         List<EventDTO> actual = unit.findAll().getBody();
 

@@ -1,4 +1,4 @@
-package converter;
+package com.alert.collab.converter;
 
 public interface Converter<IN, OUT> {
 
