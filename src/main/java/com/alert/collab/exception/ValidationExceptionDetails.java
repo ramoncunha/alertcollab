@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class ValidationExceptionDetails extends ExceptionDetails {
 
-    private String fields;
-    private String fieldMessage;
+    private final String fields;
+    private final String fieldMessage;
 
 }

@@ -1,7 +1,6 @@
 package com.alert.collab.handler;
 
 import com.alert.collab.exception.ExceptionDetails;
-import com.alert.collab.exception.ResourceNotFoundDetails;
 import com.alert.collab.exception.ResourceNotFoundException;
 import com.alert.collab.exception.ValidationExceptionDetails;
 import org.springframework.http.HttpHeaders;
@@ -23,9 +22,9 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ResourceNotFoundDetails> handleResourceNotFoundException(ResourceNotFoundException ex) {
+    public ResponseEntity<ExceptionDetails> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return new ResponseEntity<>(
-            ResourceNotFoundDetails.builder()
+                ExceptionDetails.builder()
                 .timestamp(LocalDateTime.now())
                 .detail(ex.getMessage())
                 .developerMessage(ex.getClass().getName())
@@ -36,8 +35,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
         return new ResponseEntity<>(
             ExceptionDetails.builder()
+                .detail("Check values of your request")
                 .timestamp(LocalDateTime.now())
-                .detail(ex.getMessage())
                 .developerMessage(ex.getClass().getName())
                 .build(), HttpStatus.BAD_REQUEST);
     }
