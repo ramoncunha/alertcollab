@@ -13,4 +13,4 @@ mvn clean compile
 
 ## 🗃 Version history
 * 0.0.1
-    * Versão inicial
+    * Alpha
