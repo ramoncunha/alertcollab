@@ -27,8 +27,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(
             ResourceNotFoundDetails.builder()
                 .timestamp(LocalDateTime.now())
-                .status(HttpStatus.NOT_FOUND.value())
-                .title("Resource Not Found")
                 .detail(ex.getMessage())
                 .developerMessage(ex.getClass().getName())
                 .build(), HttpStatus.NOT_FOUND);
@@ -39,8 +37,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(
             ExceptionDetails.builder()
                 .timestamp(LocalDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .title("Illegal Argument")
                 .detail(ex.getMessage())
                 .developerMessage(ex.getClass().getName())
                 .build(), HttpStatus.BAD_REQUEST);
@@ -55,8 +51,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(
             ValidationExceptionDetails.builder()
                 .timestamp(LocalDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .title("Field validation error")
                 .detail("Check the field below")
                 .developerMessage(ex.getClass().getName())
                 .fields(fields)
@@ -68,8 +62,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
             .timestamp(LocalDateTime.now())
-            .status(status.value())
-            .title(ex.getCause().getMessage())
             .detail(ex.getMessage())
             .developerMessage(ex.getClass().getName())
             .build();
@@ -81,8 +73,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(
                 ExceptionDetails.builder()
                 .timestamp(LocalDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .title("Date parse exception")
                 .detail(ex.getMessage())
                 .developerMessage("Use yyyy-MM-dd HH:mm")
                 .build(), HttpStatus.BAD_REQUEST);

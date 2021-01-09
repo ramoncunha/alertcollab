@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class ExceptionDetails {
 
-    protected String title;
-    protected int status;
     protected String detail;
     protected LocalDateTime timestamp;
     protected String developerMessage;
-
 }
