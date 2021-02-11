@@ -1,10 +1,10 @@
 package com.alert.collab.controller;
 
+import com.alert.collab.converter.EventDTOMapper;
+import com.alert.collab.converter.EventMapper;
 import com.alert.collab.dto.EventDTO;
 import com.alert.collab.model.Event;
 import com.alert.collab.service.EventService;
-import com.alert.collab.converter.EventDTOToEvent;
-import com.alert.collab.converter.EventToEventDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +20,22 @@ import java.util.stream.Collectors;
 public class EventController {
 
     private final EventService eventService;
-    private final EventDTOToEvent converterToEvent;
-    private final EventToEventDTO converterToEventDTO;
+    private final EventMapper eventMapper;
+    private final EventDTOMapper eventDTOMapper;
 
     @GetMapping
     public ResponseEntity<List<EventDTO>> findAll() {
         List<Event> events = this.eventService.findAll();
-        List<EventDTO> response = events.stream().map(converterToEventDTO::convert).collect(Collectors.toList());
+        List<EventDTO> response = events.stream().map(eventDTOMapper::eventToEventDTO).collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
 
     @PostMapping
     public ResponseEntity<EventDTO> save(@RequestBody @Valid EventDTO eventDto) {
-        Event event = converterToEvent.convert(eventDto);
+        Event event = eventMapper.eventDTOToEvent(eventDto);
         Event savedEvent = this.eventService.save(event);
-        EventDTO response = converterToEventDTO.convert(savedEvent);
+        EventDTO response = eventDTOMapper.eventToEventDTO(savedEvent);
 
         return ResponseEntity.ok(response);
     }
